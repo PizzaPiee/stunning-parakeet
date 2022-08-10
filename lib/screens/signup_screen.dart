@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:frontend/services/api_service.dart';
 import 'package:get/get.dart';
 
+enum TypeOfForm { signIn, signUp }
+
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final AuthController c = Get.put(AuthController());
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -24,7 +27,7 @@ class AuthScreen extends StatelessWidget {
             child: Column(
               children: [
                 const Text(
-                  "Sign In",
+                  "Sign Up",
                   style: TextStyle(fontSize: 30),
                 ),
                 const SizedBox(
@@ -48,6 +51,16 @@ class AuthScreen extends StatelessWidget {
                   validator: (value) => c.validator(value!),
                   obscureText: true,
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  child: const Text(
+                    "Do you already have an account? Sign In",
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                  onTap: () => {/** Goes to Sign In page (TBA) */},
+                ),
                 const SizedBox(
                   height: 50,
                 ),
@@ -56,10 +69,10 @@ class AuthScreen extends StatelessWidget {
                   child: ElevatedButton(
                     child: const Text("Submit"),
                     onPressed: () {
-                      c.signIn();
+                      c.signUp();
                     },
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -83,7 +96,7 @@ class AuthController extends GetxController {
     return null;
   }
 
-  void signIn() {
+  void signUp() {
     bool? isValid = loginFormKey.currentState?.validate();
     if (isValid!) {
       apiController.signUp(emailController.text, passwordController.text);
