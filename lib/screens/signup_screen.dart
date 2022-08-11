@@ -99,10 +99,16 @@ class AuthController extends GetxController {
     return null;
   }
 
-  void signUp() {
+  Future<void> signUp() async {
     bool? isValid = loginFormKey.currentState?.validate();
     if (isValid!) {
-      apiController.signUp(emailController.text, passwordController.text);
+      var isDone = await apiController.signUp(
+          emailController.text, passwordController.text);
+      if (isDone) {
+        // move to home page
+      } else {
+        // show errors
+      }
     }
   }
 }
