@@ -13,67 +13,70 @@ class AuthScreen extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 80.0),
-          padding: const EdgeInsets.all(20.0),
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
-            borderRadius: const BorderRadius.all(Radius.circular(25.0)),
-          ),
-          width: 300,
-          height: 410,
-          child: Form(
-            key: c.loginFormKey,
-            child: Column(
-              children: [
-                const Text(
-                  "Sign Up",
-                  style: TextStyle(fontSize: 30),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      icon: Icon(Icons.email),
-                      hintText: "insert email",
-                      labelText: "email"),
-                  controller: c.emailController,
-                  validator: (value) => c.validator(value!),
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.password),
-                    hintText: "insert password",
-                    labelText: "password",
+        child: SingleChildScrollView(
+          child: Container(
+            margin:
+                const EdgeInsets.symmetric(horizontal: 50.0, vertical: 80.0),
+            padding: const EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+            ),
+            width: 300,
+            height: 450,
+            child: Form(
+              key: c.loginFormKey,
+              child: Column(
+                children: [
+                  const Text(
+                    "Sign Up",
+                    style: TextStyle(fontSize: 30),
                   ),
-                  controller: c.passwordController,
-                  validator: (value) => c.validator(value!),
-                  obscureText: true,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                InkWell(
-                  child: const Text(
-                    "Do you already have an account? Sign In",
-                    style: TextStyle(color: Colors.blue),
+                  const SizedBox(
+                    height: 50,
                   ),
-                  onTap: () => {/** Goes to Sign In page (TBA) */},
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    child: const Text("Submit"),
-                    onPressed: () {
-                      c.signUp();
-                    },
+                  TextFormField(
+                    decoration: const InputDecoration(
+                        icon: Icon(Icons.email),
+                        hintText: "insert email",
+                        labelText: "email"),
+                    controller: c.emailController,
+                    validator: (value) => c.validator(value!),
                   ),
-                ),
-              ],
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.password),
+                      hintText: "insert password",
+                      labelText: "password",
+                    ),
+                    controller: c.passwordController,
+                    validator: (value) => c.validator(value!),
+                    obscureText: true,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  InkWell(
+                    child: const Text(
+                      "Do you already have an account? Sign In",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                    onTap: () => {/** Goes to Sign In page (TBA) */},
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      child: const Text("Submit"),
+                      onPressed: () {
+                        c.signUp();
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
